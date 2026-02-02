@@ -1,0 +1,15 @@
+{
+  "name": "extended-dashboard",
+  "version": "1.0.0",
+  "description": "Extended Exchange Dashboard - Track your positions, PnL, and airdrop points",
+  "author": "Aven (@Aven_xbt)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}
