@@ -36,12 +36,23 @@ export default async function handler(req, res) {
             }
         });
 
-        const data = await response.json();
+        // Get response as text first
+        const text = await response.text();
+        
+        // Try to parse as JSON, return empty data if not valid JSON
+        let data;
+        try {
+            data = text ? JSON.parse(text) : { data: null };
+        } catch (e) {
+            // If response is not JSON, return it as-is or empty
+            data = { data: null, rawResponse: text || null };
+        }
 
         if (!response.ok) {
             return res.status(response.status).json({
                 error: data.error || 'API request failed',
-                message: data.message || `Extended API returned ${response.status}`
+                message: data.message || `Extended API returned ${response.status}`,
+                status: response.status
             });
         }
 
